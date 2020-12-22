@@ -3,6 +3,14 @@
 namespace Netbuild\Apidriver;
 
 use Illuminate\Database\Connectors\ConnectionFactory as BaseConnectionFactory;
+use Illuminate\Database\Connectors\MySqlConnector;
+use Illuminate\Database\Connectors\PostgresConnector;
+use Illuminate\Database\Connectors\SQLiteConnector;
+use Illuminate\Database\Connectors\SqlServerConnector;
+use Illuminate\Database\MySqlConnection;
+use Illuminate\Database\PostgresConnection;
+use Illuminate\Database\SQLiteConnection;
+use Illuminate\Database\SqlServerConnection;
 use Netbuild\Apidriver\Connection\ApiConnection;
 use Netbuild\Apidriver\Connector\ApiConnector;
 
@@ -28,13 +36,13 @@ class ConnectionFactory extends BaseConnectionFactory
         
         switch ($config['driver']) {
             case 'mysql':
-                return new \Illuminate\Database\Connectors\MySqlConnector;
+                return new MySqlConnector;
             case 'pgsql':
-                return new \Illuminate\Database\PostgresConnector;
+                return new PostgresConnector;
             case 'sqlite':
-                return new \Illuminate\Database\SQLiteConnector;
+                return new SQLiteConnector;
             case 'sqlsrv':
-                return new \Illuminate\Database\SqlServerConnector;
+                return new SqlServerConnector;
             case 'api':
                 return new ApiConnector;
         }
@@ -62,13 +70,13 @@ class ConnectionFactory extends BaseConnectionFactory
 
         switch ($driver) {
             case 'mysql':
-                return new \Illuminate\Database\MySqlConnection($connection, $database, $prefix, $config);
+                return new MySqlConnection($connection, $database, $prefix, $config);
             case 'pgsql':
-                return new \Illuminate\Database\PostgresConnection($connection, $database, $prefix, $config);
+                return new PostgresConnection($connection, $database, $prefix, $config);
             case 'sqlite':
-                return new \Illuminate\Database\SQLiteConnection($connection, $database, $prefix, $config);
+                return new SQLiteConnection($connection, $database, $prefix, $config);
             case 'sqlsrv':
-                return new \Illuminate\Database\SqlServerConnection($connection, $database, $prefix, $config);
+                return new SqlServerConnection($connection, $database, $prefix, $config);
             case 'api':
                 return new ApiConnection($connection, $database, $prefix, $config);
         }

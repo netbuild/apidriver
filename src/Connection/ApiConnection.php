@@ -25,8 +25,7 @@ class ApiConnection extends Connection
             return [];
         }
 
-        $model = $this->getModel();
-        $query['api_token'] = $model->getApiToken();
+        $query['api_token'] = $this->getModel()->getApiToken();
 
         // Get api string from query and unset it from query
         $api = $query['api'];
@@ -52,29 +51,17 @@ class ApiConnection extends Connection
         }
 
         // Validate data and set index
-        if (! empty($data)) {
-            $attribute = isset($options['index_by']) ? $options['index_by'] : '';
-            $isIdx = ! empty($attribute);
-            try {
-                foreach ($data as $record) {
-                    if ($isIdx) {
-                        $idx = $record[$attribute] ?? null;
-                        if (! empty($idx)) {
-                            $res['data'][$idx] = $this->getModel()->fill($record)->toArray();
-                        }
-                    } else {
-                        $model = $this->getModel()->fill($record);
-                        if ($model->validate()) {
-                            $res['data'][] = $model->toArray();
-                        }
-                    }
-                }
-            } catch (\Exception $e) {
-                return [];
-            }
-        }
+        if (!empty($data)) 
+        {
+            $model = $this->getModel();
 
-        return $isGetMetaData ? $res ?? [] : $res['data'] ?? [];
+            foreach($data as $key => $record)
+            {
+                $model->$key = $record;
+            }
+
+            return [ $model->toArray() ];
+        }
     }
 
     /**

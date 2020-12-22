@@ -34,44 +34,24 @@ class ApiGrammar extends Grammar
      */
     public function compileSelect(Builder $query)
     {
-        if (empty($query->from)) {
+        if (empty($query->from)) 
+        {
             return [];
         }
-        
-        // Get api string from query
-        $api['api'] = $query->from;
-        
-        // get conditions from wheres attribute
-        $conditions = head($query->wheres);
-        
-        // Check if not nested condition
-        if (empty($conditions['query'])) {
-
-        } else {
-            $conditions = $conditions['query']->wheres;
+        else
+        {
+            // Get api string from query
+            $api['api'] = $query->from;
         }
-
-        // Check whether a single condition or multiple condition, then change format to multiple condition
-        if (! is_array(head($conditions))) {
-            $tmp = $conditions;
-            $conditions = [];
-            $conditions[] = $tmp;
-        }
-
-        // Loop and get conditions as array
-        foreach ($conditions as $key => $condition) {
-            $column = $condition['column'];
-
-            if (empty($condition['operator'])) {
-                continue;
-            }
-
-            $operator = $condition['operator'] === '=' ? '' : $condition['operator']; 
-            $api[$column . $operator] = $condition['value'] ?? null;
+        
+        if(isset($query->wheres) && !empty($query->wheres))
+        {
+            $api['wheres'] = $query->wheres;
         }
         
         // Check limit attribute and add it into query conditions
-        if ($query->limit > 0) {
+        if ($query->limit > 0) 
+        {
             $api['limit'] = $query->limit;
         }
 
