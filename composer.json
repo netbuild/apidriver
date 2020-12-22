@@ -19,7 +19,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Hungnguyenba\\Apidriver\\": "src/"
+            "netbuild\\Apidriver\\": "src/"
         }
     }
 }
