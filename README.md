@@ -1,23 +1,21 @@
-# NOTE:
-This package was only used in my personal projects with special use cases, so you shouldn't use it. I will rewrite it for common use cases when i have rest time.
-Thank you!
-
-----------------------
-
 # API Driver For Laravel 5.2
 
 An Eloquent model and Query builder with support for Restful Api Server, using the original Laravel API. This library extends the original Laravel classes, so it uses exactly the same methods.
+
+### Desription
+
+This project is a fork of [bahung1221/ApiDriver](https://github.com/bahung1221/ApiDriver) and is being developed by me for one of my projects. The goal is to make the project compatible with PHP 8.0 and Laravel 8.
 
 ### Installation
 ---------------
 Installation using composer:
 ```bash
-composer require hungnguyenba/apidriver
+composer require netbuild/apidriver
 ```
 
 And add the service provider in `config/app.php`:
 ```php
-Hungnguyenba\Apidriver\DatabaseServiceProvider::class
+Netbuild\Apidriver\DatabaseServiceProvider::class
 ```
 
 ### Configuration
@@ -45,7 +43,7 @@ And add a new api server connection:
 Create new Model extend Api Eloquent Model:
 
 ```php
-use Hungnguyenba\Apidriver\Model\Model;
+use Netbuild\Apidriver\Model\Model;
 
 class User extends Model
 {
