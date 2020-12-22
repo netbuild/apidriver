@@ -28,13 +28,13 @@ class ConnectionFactory extends BaseConnectionFactory
         
         switch ($config['driver']) {
             case 'mysql':
-                return new MySqlConnector;
+                return new \Illuminate\Database\Connectors\MySqlConnector;
             case 'pgsql':
-                return new PostgresConnector;
+                return new \Illuminate\Database\PostgresConnector;
             case 'sqlite':
-                return new SQLiteConnector;
+                return new \Illuminate\Database\SQLiteConnector;
             case 'sqlsrv':
-                return new SqlServerConnector;
+                return new \Illuminate\Database\SqlServerConnector;
             case 'api':
                 return new ApiConnector;
         }
@@ -62,13 +62,13 @@ class ConnectionFactory extends BaseConnectionFactory
 
         switch ($driver) {
             case 'mysql':
-                return new MySqlConnection($connection, $database, $prefix, $config);
+                return new \Illuminate\Database\MySqlConnection($connection, $database, $prefix, $config);
             case 'pgsql':
-                return new PostgresConnection($connection, $database, $prefix, $config);
+                return new \Illuminate\Database\PostgresConnection($connection, $database, $prefix, $config);
             case 'sqlite':
-                return new SQLiteConnection($connection, $database, $prefix, $config);
+                return new \Illuminate\Database\SQLiteConnection($connection, $database, $prefix, $config);
             case 'sqlsrv':
-                return new SqlServerConnection($connection, $database, $prefix, $config);
+                return new \Illuminate\Database\SqlServerConnection($connection, $database, $prefix, $config);
             case 'api':
                 return new ApiConnection($connection, $database, $prefix, $config);
         }

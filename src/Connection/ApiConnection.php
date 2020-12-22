@@ -25,6 +25,9 @@ class ApiConnection extends Connection
             return [];
         }
 
+        $model = $this->getModel();
+        $query['api_token'] = $model->getApiToken();
+
         // Get api string from query and unset it from query
         $api = $query['api'];
         unset($query['api']);

@@ -94,4 +94,10 @@ class Model extends BaseModel
 
         return empty($meta) ? $instance->newCollection($items) : $meta;
     }
+
+    public function getApiToken()
+    {
+        $model = $this->getModel();
+        return $model->api_token;
+    }
 }

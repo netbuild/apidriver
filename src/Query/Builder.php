@@ -1,6 +1,6 @@
 <?php
 
-namespace Hungnguyenba\Apidriver\Query;
+namespace Netbuild\Apidriver\Query;
 
 use Illuminate\Database\Query\Builder as BaseQueryBuilder;
 
