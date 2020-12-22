@@ -17,6 +17,7 @@
             "role": "developer"
         }
     ],
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "netbuild\\Apidriver\\": "src/"
