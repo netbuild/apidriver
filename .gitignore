@@ -1,5 +1,0 @@
-# Specify filepatterns you want git to ignore.
-
-apidriver.sublime-project
-apidriver.sublime-workspace
-sftp-config.json
