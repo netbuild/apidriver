@@ -1,6 +1,6 @@
 {
-    "name": "hungnguyenba/apidriver",
-    "description": "A Api based Eloquent model and Query builder for laravel (Api Eloquent)",
+    "name": "netbuild/apidriver",
+    "description": "A Api based Eloquent model and Query builder for laravel (Api Eloquent). Fork from https://github.com/bahung1221/ApiDriver",
     "type": "library",
     "require": {
         "hungnguyenba/apiconnectionservice": "^0.0.8"
@@ -8,7 +8,13 @@
     "authors": [
         {
             "name": "bahung1221",
-            "email": "bahung1221@gmail.com"
+            "email": "bahung1221@gmail.com",
+            "role": "mantainer"
+        },
+        {
+            "name": "netbuild",
+            "email": "pb@netbuild.net",
+            "role": "developer"
         }
     ],
     "autoload": {
