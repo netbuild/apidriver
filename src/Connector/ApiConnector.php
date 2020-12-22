@@ -1,6 +1,6 @@
 <?php
 
-namespace Hungnguyenba\Apidriver\Connector;
+namespace Netbuild\Apidriver\Connector;
 
 use Illuminate\Database\Connectors\Connector;
 use Illuminate\Database\Connectors\ConnectorInterface;

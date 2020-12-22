@@ -1,11 +1,11 @@
 <?php
 
-namespace Hungnguyenba\Apidriver\Connection;
+namespace Netbuild\Apidriver\Connection;
 
 use Illuminate\Database\Connection;
-use Hungnguyenba\Apiconnectionservice\Service;
-use Hungnguyenba\Apidriver\Grammar\ApiGrammar;
-use Hungnguyenba\Apidriver\Processor\ApiProcessor;
+use Netbuild\Apiconnectionservice\Service;
+use Netbuild\Apidriver\Grammar\ApiGrammar;
+use Netbuild\Apidriver\Processor\ApiProcessor;
 
 class ApiConnection extends Connection
 {

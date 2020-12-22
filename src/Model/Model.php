@@ -1,10 +1,10 @@
 <?php
 
-namespace Hungnguyenba\Apidriver\Model;
+namespace Netbuild\Apidriver\Model;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
-use Hungnguyenba\Apidriver\Eloquent\Builder;
-use Hungnguyenba\Apidriver\Query\Builder as QueryBuilder;
+use Netbuild\Apidriver\Eloquent\Builder;
+use Netbuild\Apidriver\Query\Builder as QueryBuilder;
 
 class Model extends BaseModel
 {

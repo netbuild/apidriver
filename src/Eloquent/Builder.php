@@ -1,6 +1,6 @@
 <?php
 
-namespace Hungnguyenba\Apidriver\Eloquent;
+namespace Netbuild\Apidriver\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder as BaseEloquentBuilder;
 

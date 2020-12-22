@@ -1,8 +1,8 @@
 <?php
 
-namespace Hungnguyenba\Apidriver;
+namespace Netbuild\Apidriver;
 
-use Hungnguyenba\Apidriver\ConnectionFactory;
+use Netbuild\Apidriver\ConnectionFactory;
 use Illuminate\Database\DatabaseServiceProvider as BaseDatabaseServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\DatabaseManager;
