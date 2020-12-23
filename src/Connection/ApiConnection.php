@@ -29,6 +29,8 @@ class ApiConnection extends Connection
 
         // Get api string from query and unset it from query
         $api = $query['api'];
+        $url = $this->getModel()->getUrl();
+
         unset($query['api']);
 
         // Get flag for get metadata and unset it from query
@@ -36,7 +38,7 @@ class ApiConnection extends Connection
         unset($query['isGetMetaData']);
         
         // Execute get request from api and receive response data
-        $data = $this->get($api, $query, $isGetMetaData);
+        $data = $this->get($api, $query, $isGetMetaData, $url);
         // Check flag for get metadata
         if ($isGetMetaData) {
             $res['total'] = $data['total'];
@@ -57,10 +59,13 @@ class ApiConnection extends Connection
 
             foreach($data as $key => $record)
             {
-                $model->$key = $record;
+                if(!is_null($record))
+                {
+                    $model->$key = $record;
+                }
             }
 
-            return [ $model->toArray() ];
+            return $model->toArray();
         }
     }
 
@@ -79,10 +84,11 @@ class ApiConnection extends Connection
 
         // Set api name then unset it from query array
         $api = $query['api'];
+        $url = $this->getModel()->getUrl();
         unset($query['api']);
 
         // Execute post request and get response
-        return $this->post($api, $query) ?? [];
+        return $this->post($api, $query, $url) ?? [];
     }
 
       /**
@@ -98,6 +104,8 @@ class ApiConnection extends Connection
             return 0;
         }
 
+        $url = $this->getModel()->getUrl();
+
         // Get the api name from query, then unset it
         $api = $query['api'];
         unset($query['api']);
@@ -107,7 +115,7 @@ class ApiConnection extends Connection
         unset($query['id']);
 
         // Execute put request and get response
-        $res = $this->put($api, $id, $query);
+        $res = $this->put($api, $id, $query, $url);
 
         return empty($res) ? 0 : 1;
     }
@@ -125,6 +133,8 @@ class ApiConnection extends Connection
         if (empty($api)) {
             return [];
         }
+
+        $url = $this->getModel()->getUrl();
         
         $res = $this->put($api, $ids, $values);
         return $res ?? [];
@@ -168,7 +178,7 @@ class ApiConnection extends Connection
         $api = $query['api'];
         $id = $query['id'];
 
-        $res = $this->deleteById($api, $id);
+        $res = $this->deleteById($api, $id, $url);
         
         return empty($res) ? 0 : 1;
     }

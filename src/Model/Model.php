@@ -100,4 +100,10 @@ class Model extends BaseModel
         $model = $this->getModel();
         return $model->api_token;
     }
+
+    public function getUrl()
+    {
+        $model = $this->getModel();
+        return $model->url;
+    }
 }

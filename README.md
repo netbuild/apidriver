@@ -31,7 +31,6 @@ And add a new api server connection:
 ```php
 'api' => [
         'driver' => 'api',
-        'host' => 'localhost/v1/',
         'database' => '',
         'prefix' => '',
 ]
@@ -47,7 +46,9 @@ use Netbuild\Apidriver\Model\Model;
 
 class User extends Model
 {
-
+	protected $url 			= 'https://api.your_restful.url'
+	protected $api_token	= 'YOURAPITOKEN'
+	protected $table 		= 'REMOTE_MODEL';
 }
 ```
 
@@ -55,6 +56,22 @@ Using the original Eloquent API:
 
 ```php
 $users = User::where('id', '<', 100)->take(3)->get();
+```
+
+or
+
+```php
+$users = User::where('column_1', '=', 'your_term_1')->orWhere('column_1', '=', 'your_term_2')->take(3)->get();
+```
+
+or
+
+```php
 $user = User::find(3);
+```
+
+or
+
+```php
 $user->delete();
 ```
