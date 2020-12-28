@@ -47,7 +47,7 @@ use Netbuild\Apidriver\Model\Model;
 class User extends Model
 {
 	protected $url 			= 'https://api.your_restful.url'
-	protected $api_token	= 'YOURAPITOKEN'
+	protected $api_token		= 'YOURAPITOKEN'
 	protected $table 		= 'REMOTE_MODEL';
 }
 ```
