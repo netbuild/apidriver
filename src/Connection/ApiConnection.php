@@ -32,41 +32,18 @@ class ApiConnection extends Connection
         $url = $this->getModel()->getUrl();
 
         unset($query['api']);
-
-        // Get flag for get metadata and unset it from query
-        $isGetMetaData = ! empty($query['isGetMetaData']) && $query['isGetMetaData'] == 1 ? true : false;
-        unset($query['isGetMetaData']);
-        
+       
         // Execute get request from api and receive response data
-        $data = $this->get($api, $query, $isGetMetaData, $url);
-        // Check flag for get metadata
-        if ($isGetMetaData) {
-            $res['total'] = $data['total'];
-            $res['per_page'] = $data['per_page'];
-            $res['current_page'] = $data['current_page'];
-            $res['last_page'] = $data['last_page'];
-            $res['next_page_url'] = $data['next_page_url'];
-            $res['prev_page_url'] = $data['prev_page_url'];
-            $res['from'] = $data['from'];
-            $res['to'] = $data['to'];
-            $data = $data['data'];
-        }
 
-        // Validate data and set index
-        if (!empty($data)) 
-        {
-            $model = $this->getModel();
-
-            foreach($data as $key => $record)
-            {
-                if(!is_null($record))
-                {
-                    $model->$key = $record;
-                }
-            }
-
-            return $model->toArray();
-        }
+        return $this
+            ->getModel()
+            ->fill($this->get(
+                $api, 
+                $query, 
+                null, 
+                $url
+            ))
+            ->toArray();
     }
 
     /**
