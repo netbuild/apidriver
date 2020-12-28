@@ -2,6 +2,8 @@
 
 An Eloquent model and query builder with support for Restful Api Server using the original Laravel API. This library extends the original Laravel classes, so it uses exactly the same methods. Supports relationships to other models with methods like hasMany, belongsTo, etc.
 
+Works great with other Laravel instances.
+
 ### Description
 
 This project is a fork of [bahung1221/ApiDriver](https://github.com/bahung1221/ApiDriver) and is being developed by me for one of my projects. The goal is to make the project compatible with PHP 8.0 and Laravel 8.
