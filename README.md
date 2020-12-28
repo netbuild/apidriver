@@ -47,7 +47,7 @@ use Netbuild\Apidriver\Model\Model;
 class User extends Model
 {
 	protected $url 			= 'https://api.your_restful.url'
-	protected $api_token		= 'YOURAPITOKEN'
+	protected $api_token		= 'YOUR_API_TOKEN'
 	protected $table 		= 'REMOTE_MODEL';
 }
 ```
@@ -74,4 +74,52 @@ or
 
 ```php
 $user->delete();
+```
+
+### Relationships
+-------------
+
+Model User
+
+```php
+<?php
+
+namespace App\Models\API;
+
+use Netbuild\Apidriver\Model\Model;
+
+class User extends Model
+{
+    protected $connection   		= 'api';
+    protected $url 			= 'https://api.your_restful.url'
+    protected $api_token		= 'YOUR_API_TOKEN'
+    protected $table 			= 'REMOTE_MODEL';
+    public    $timestamps   		= true;
+
+}
+```
+
+Model Database
+
+```php
+<?php
+
+namespace App\Models\API;
+
+use Netbuild\Apidriver\Model\Model;
+
+class Database extends Model
+{
+    protected $connection   		= 'api';
+    protected $url 			= 'https://api.your_restful.url'
+    protected $api_token		= 'YOUR_API_TOKEN'
+    protected $table 			= 'REMOTE_MODEL';
+    public    $timestamps   		= true;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+}
 ```
