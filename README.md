@@ -1,6 +1,6 @@
 # API Driver For Laravel 8.0
 
-An Eloquent model and Query builder with support for Restful Api Server, using the original Laravel API. This library extends the original Laravel classes, so it uses exactly the same methods.
+An Eloquent model and query builder with support for Restful Api Server using the original Laravel API. This library extends the original Laravel classes, so it uses exactly the same methods. Supports relationships to other models with methods like hasMany, belongsTo, etc.
 
 ### Description
 
