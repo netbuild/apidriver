@@ -7,14 +7,14 @@
     },
     "authors": [
         {
-            "name": "bahung1221",
-            "email": "bahung1221@gmail.com",
-            "role": "mantainer"
+            "name": "ceab254",
+            "email": "dm@netbuild.net",
+            "role": "developer"
         },
         {
             "name": "netbuild",
             "email": "pb@netbuild.net",
-            "role": "developer"
+            "role": "mantainer"
         }
     ],
     "license": "GPL-3.0-or-later",
