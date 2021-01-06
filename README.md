@@ -4,10 +4,6 @@ An Eloquent model and query builder with support for Restful Api Server using th
 
 Works great with other Laravel instances.
 
-### Description
-
-This project is a fork of [bahung1221/ApiDriver](https://github.com/bahung1221/ApiDriver) and is being developed by me for one of my projects. The goal is to make the project compatible with PHP 8.0 and Laravel 8.
-
 ### Installation
 ---------------
 Installation using composer:
