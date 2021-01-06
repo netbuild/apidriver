@@ -1,6 +1,6 @@
 {
     "name": "netbuild/apidriver",
-    "description": "A Api based Eloquent model and Query builder for laravel (Api Eloquent). Fork from https://github.com/bahung1221/ApiDriver.",
+    "description": "A Api based Eloquent model and Query builder for laravel (Api Eloquent).",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.1.1"
