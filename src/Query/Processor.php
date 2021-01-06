@@ -20,20 +20,9 @@
 
 namespace Netbuild\Apidriver\Query;
 
-use Illuminate\Database\Query\Builder as BaseBuilder;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\LazyCollection;
-use Illuminate\Support\Str;
-use Netbuild\Apidriver\Connection;
+use Illuminate\Database\Query\Processors\Processor as BaseProcessor;
 
-class Builder extends BaseBuilder
+class Processor extends BaseProcessor
 {
-    public function __construct(Connection $connection, Grammar $grammar, Processor $processor)
-    {
-        $this->grammar = $grammar;
-        $this->connection = $connection;
-        $this->processor = $processor;
-    }
+
 }

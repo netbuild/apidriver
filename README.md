@@ -17,7 +17,7 @@ composer require netbuild/apidriver
 
 And add the service provider in `config/app.php`:
 ```php
-Netbuild\Apidriver\DatabaseServiceProvider::class
+Netbuild\Apidriver\ApiDbServiceProvider::class
 ```
 
 ### Configuration
@@ -44,7 +44,7 @@ And add a new api server connection:
 Create new Model extend Api Eloquent Model:
 
 ```php
-use Netbuild\Apidriver\Model\Model;
+use Netbuild\Apidriver\Eloquent\Model;
 
 class User extends Model
 {
@@ -88,7 +88,7 @@ Model User
 
 namespace App\Models\API;
 
-use Netbuild\Apidriver\Model\Model;
+use Netbuild\Apidriver\Eloquent\Model;
 
 class User extends Model
 {
@@ -108,7 +108,7 @@ Model Database
 
 namespace App\Models\API;
 
-use Netbuild\Apidriver\Model\Model;
+use Netbuild\Apidriver\Eloquent\Model;
 
 class Database extends Model
 {

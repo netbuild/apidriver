@@ -18,22 +18,11 @@
  *
  **/
 
-namespace Netbuild\Apidriver\Query;
+namespace Netbuild\Apidriver\Schema;
 
-use Illuminate\Database\Query\Builder as BaseBuilder;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\LazyCollection;
-use Illuminate\Support\Str;
-use Netbuild\Apidriver\Connection;
+use Illuminate\Database\Schema\Grammars\Grammar as BaseGrammar;
 
-class Builder extends BaseBuilder
+class Grammar extends BaseGrammar
 {
-    public function __construct(Connection $connection, Grammar $grammar, Processor $processor)
-    {
-        $this->grammar = $grammar;
-        $this->connection = $connection;
-        $this->processor = $processor;
-    }
+	
 }

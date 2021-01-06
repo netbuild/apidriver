@@ -3,7 +3,7 @@
     "description": "A Api based Eloquent model and Query builder for laravel (Api Eloquent). Fork from https://github.com/bahung1221/ApiDriver.",
     "type": "library",
     "require": {
-        "netbuild/apiconnectionservice": "^0.0.9"
+        "guzzlehttp/guzzle": "^7.1.1"
     },
     "authors": [
         {

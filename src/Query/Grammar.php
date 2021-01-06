@@ -1,11 +1,29 @@
 <?php
 
-namespace Netbuild\Apidriver\Grammar;
+/**
+ *
+ * LICENSE: This source file is subject to version 3.01 of the GNU license
+ * that is available through the world-wide-web at the following URI:
+ * https://www.gnu.org/licenses/gpl-3.0.de.html.  If you did not receive 
+ * a copy of the PHP License and are unable to obtain it through the web, 
+ * please send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   Development
+ * @package    Apidriver
+ * @author     Patrick Bohn <patrick.bohn@me.com>
+ * @author     Dennis Müller <dm@netbuild.net>
+ * @copyright  1998-2021 Net-Build GmbH
+ * @license    https://www.gnu.org/licenses/gpl-3.0.de.html  GNU General Public License 3
+ * @link       https://github.com/netbuild/apidriver
+ *
+ **/
 
-use Illuminate\Database\Query\Grammars\Grammar;
+namespace Netbuild\Apidriver\Query;
+
+use Illuminate\Database\Query\Grammars\Grammar as BaseGrammar;
 use Illuminate\Database\Query\Builder;
 
-class ApiGrammar extends Grammar
+class Grammar extends BaseGrammar
 {
      /**
      * The components that make up a select clause.
@@ -34,28 +52,11 @@ class ApiGrammar extends Grammar
      */
     public function compileSelect(Builder $query)
     {
-        if (empty($query->from)) 
-        {
-            return [];
-        }
-        else
-        {
-            // Get api string from query
-            $api['api'] = $query->from;
-        }
-        
-        if(isset($query->wheres) && !empty($query->wheres))
-        {
-            $api['wheres'] = $query->wheres;
-        }
-        
-        // Check limit attribute and add it into query conditions
-        if ($query->limit > 0) 
-        {
-            $api['limit'] = $query->limit;
-        }
-
-        return $api ?? [];
+        return [ 
+            'from'   => $query->from ?? null,
+            'wheres' => $query->wheres ?? null,
+            'limit'  => $query->limit ?? null 
+        ];
     }
 
      /**
@@ -124,5 +125,4 @@ class ApiGrammar extends Grammar
 
         return $conditions ?? [];
     }
-
 }

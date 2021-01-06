@@ -18,22 +18,34 @@
  *
  **/
 
-namespace Netbuild\Apidriver\Query;
+namespace Netbuild\Apidriver;
 
-use Illuminate\Database\Query\Builder as BaseBuilder;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\LazyCollection;
-use Illuminate\Support\Str;
+use Illuminate\Support\ServiceProvider;
+use Netbuild\Apidriver\Eloquent\Model;
 use Netbuild\Apidriver\Connection;
 
-class Builder extends BaseBuilder
+class ApiDbServiceProvider extends ServiceProvider
 {
-    public function __construct(Connection $connection, Grammar $grammar, Processor $processor)
+    /**
+     * Bootstrap the application events.
+     */
+    public function boot()
     {
-        $this->grammar = $grammar;
-        $this->connection = $connection;
-        $this->processor = $processor;
+        Model::setConnectionResolver($this->app['db']);
+        Model::setEventDispatcher($this->app['events']);
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+        // Add database driver.
+        $this->app->resolving('db', function ($db) {
+            $db->extend('api', function ($config, $name) {
+                $config['name'] = $name;
+                return new Connection($config);
+            });
+        });
     }
 }
