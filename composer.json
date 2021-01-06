@@ -1,6 +1,6 @@
 {
     "name": "netbuild/apidriver",
-    "description": "A Api based Eloquent model and Query builder for laravel (Api Eloquent).",
+    "description": "An Eloquent model and query builder with support for Restful Api Server using the original Laravel API. This library extends the original Laravel classes, so it uses exactly the same methods. Supports relationships to other models with methods like hasMany, belongsTo, etc.",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.1.1"
