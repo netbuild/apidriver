@@ -57,7 +57,7 @@ class Grammar extends BaseGrammar
         ];
     }
 
-     /**
+    /**
      * Compile an insert and get ID statement into SQL.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -67,22 +67,14 @@ class Grammar extends BaseGrammar
      */
     public function compileInsertGetId(Builder $query, $values, $sequence)
     {
-        if (empty($query) || empty($values) || empty($query->from)) {
-            return [];
-        }
-
-        // Set api name from query builder
-        $conditions['api'] = $query->from;
-
-        // Set attributes for insert
-        foreach ($values as $key => $value) {
-            $conditions[$key] = $value;
-        }
-
-        return $conditions ?? [];
+        return [ 
+            'from'   => $query->from ?? null,
+            'wheres' => $query->wheres ?? null,
+            'limit'  => $query->limit ?? null 
+        ];
     }
 
-     /**
+    /**
      * Compile an update statement into SQL.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -91,19 +83,11 @@ class Grammar extends BaseGrammar
      */
     public function compileUpdate(Builder $query, $values)
     {
-        if (empty($query) || empty($values)) {
-            return [];
-        }
-        
-        // Get condition for update
-        $conditions = $this->compileSelect($query);
-
-        // Get query
-        foreach ($values as $key => $value) {
-           $conditions[$key] = $value; 
-        }
-
-        return $conditions ?? [];
+        return [ 
+            'from'   => $query->from ?? null,
+            'wheres' => $query->wheres ?? null,
+            'limit'  => $query->limit ?? null 
+        ];
     }
 
     /**
@@ -114,13 +98,10 @@ class Grammar extends BaseGrammar
      */
     public function compileDelete(Builder $query)
     {
-        if (empty($query)) {
-            return [];
-        }
-
-        // Get condition for delete
-        $conditions = $this->compileSelect($query);
-
-        return $conditions ?? [];
+        return [ 
+            'from'   => $query->from ?? null,
+            'wheres' => $query->wheres ?? null,
+            'limit'  => $query->limit ?? null 
+        ];
     }
 }

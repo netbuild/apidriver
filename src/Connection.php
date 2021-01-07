@@ -41,6 +41,33 @@ class Connection extends BaseConnection
     }
 
     /**
+     * needed if you want to work with yajra's datatables editor, 
+     * because the class does not support transactions
+     */
+    public function beginTransaction()
+    {
+        return null;        
+    }
+
+    /**
+     * needed if you want to work with yajra's datatables editor, 
+     * because the class does not support transactions
+     */
+    public function rollBack($toLevel = null)
+    {
+        return null;
+    }
+
+    /**
+     * needed if you want to work with yajra's datatables editor, 
+     * because the class does not support transactions
+     */
+    public function commit()
+    {
+        return null;
+    }
+
+    /**
      * Create a new database connection instance.
      * @param array $config
      */
@@ -86,7 +113,6 @@ class Connection extends BaseConnection
 
     public function affectingStatement($query, $bindings = [])
     {
-        dd($query);
         // Connect to api interface
         if(!is_null($this->model))
         {

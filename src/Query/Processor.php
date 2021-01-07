@@ -19,8 +19,24 @@
 namespace Netbuild\Apidriver\Query;
 
 use Illuminate\Database\Query\Processors\Processor as BaseProcessor;
+use Illuminate\Database\Query\Builder;
 
 class Processor extends BaseProcessor
 {
+	/**
+     * Process an  "insert get ID" query.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  string  $sql
+     * @param  array  $values
+     * @param  string|null  $sequence
+     * @return int
+     */
+    public function processInsertGetId(Builder $query, $sql, $values, $sequence = null)
+    {
+        $result = $query->getConnection()->insert($sql, $values);
+ 
+        return is_numeric($result['id']) ? (int) $result['id'] : $result['id'];
+    }
 
 }

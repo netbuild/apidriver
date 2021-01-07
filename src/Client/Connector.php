@@ -35,6 +35,8 @@ class Connector extends BaseConnection
 			    'wheres' => $query['wheres'],
 			]);
 
+			$response->throw();
+
 			return $response->json();
 		}
 	}
@@ -43,40 +45,47 @@ class Connector extends BaseConnection
 	{
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::put($model->getUrl() . $model->getTableName() . '/' . $model->id, [
-			    'api_token' => $model->getApiToken(),
-			    'wheres' => $query['wheres'],
-			]);
+			$response = Http::put($model->getUrl() . $model->getTableName() . '/' . $model->id, 
+				array_merge(
+					[ 'api_token' => $model->getApiToken() ],
+			    	$model->getAttributes()
+			    )
+			);
 
-			return true;
+			$response->throw();
+
+			return $response->json();
 		}
 	}
 
 	public function post($connection, $query, $model, $config)
 	{
-		// TODO: must be completed
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::post($model->getUrl() . $model->getTableName(), [
-			    'api_token' => $model->getApiToken(),
-			    'id' => $model->id
-			]);
+			$response = Http::post($model->getUrl() . $model->getTableName(), 
+				array_merge(
+					[ 'api_token' => $model->getApiToken() ],
+			    	$model->getAttributes()
+			    )
+			);
 
-			return true;
+			$response->throw();
+
+			return $response->json();
 		}
 	}
 
 	public function remove($connection, $query, $model, $config)
 	{
-		// TODO: must be completed
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::delete($model->getUrl() . $model->getTableName(), [
-			    'api_token' => $model->getApiToken(),
-			    'id' => $model->id
+			$response = Http::delete($model->getUrl() . $model->getTableName() . '/' . $model->id, [
+			    'api_token' => $model->getApiToken()
 			]);
 
-			return true;
+			$response->throw();
+
+			return $response->json();
 		}
 	}
 }
