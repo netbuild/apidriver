@@ -29,8 +29,6 @@ And add a new api server connection:
 ```php
 'api' => [
         'driver' => 'api',
-        'database' => '',
-        'prefix' => '',
 ]
 ```
 
