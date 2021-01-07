@@ -33,6 +33,7 @@ abstract class Model extends BaseModel
      * @var bool
      */
     public $timestamps = false;
+
     /**
      * @inheritdoc
      */
@@ -102,5 +103,19 @@ abstract class Model extends BaseModel
     public function getTableName()
     {
         return $this->table;
+    }
+
+    public function setApiToken($api_token)
+    {
+        $this->api_token = $api_token;
+
+        return $this;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }
