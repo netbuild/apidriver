@@ -33,7 +33,10 @@ class Connector extends BaseConnection
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
-			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			    'User-Agent' => sprintf("%s %s", 
+			    	config('app.client.user-agent') ?? 'Laravel Framework', 
+			    	config('app.version') ?? '0.0.0'
+			    )
 			])->get(sprintf('%s/%s', 
 				$model->getUrl(), 
 				$model->getTableName()
@@ -54,7 +57,10 @@ class Connector extends BaseConnection
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
-			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			    'User-Agent' => sprintf("%s %s", 
+			    	config('app.client.user-agent') ?? 'Laravel Framework', 
+			    	config('app.version') ?? '0.0.0'
+			    )
 			])->put(sprintf('%s/%s/%s', 
 				$model->getUrl(), 
 				$model->getTableName(), 
@@ -76,7 +82,10 @@ class Connector extends BaseConnection
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
-			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			    'User-Agent' => sprintf("%s %s", 
+			    	config('app.client.user-agent') ?? 'Laravel Framework', 
+			    	config('app.version') ?? '0.0.0'
+			    )
 			])->post(sprintf('%s/%s', 
 				$model->getUrl(), 
 				$model->getTableName(), 
@@ -97,7 +106,10 @@ class Connector extends BaseConnection
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
-			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			    'User-Agent' => sprintf("%s %s", 
+			    	config('app.client.user-agent') ?? 'Laravel Framework', 
+			    	config('app.version') ?? '0.0.0'
+			    )
 			])->delete(sprintf('%s/%s/%s', 
 				$model->getUrl(), 
 				$model->getTableName(), 
