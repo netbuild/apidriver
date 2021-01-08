@@ -30,9 +30,15 @@ class Connector extends BaseConnection
 	{	
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::get($model->getUrl() . $model->getTableName(), [
-			    'api_token' => $model->getApiToken(),
-			    'wheres' => $query['wheres'],
+			$response = Http::withHeaders([
+			    'Accept' => 'application/json',
+			    'Authorization' => 'Bearer ' . $model->getApiToken(),
+			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			])->get(sprintf('%s/%s', 
+				$model->getUrl(), 
+				$model->getTableName()
+			), [
+			    'wheres' => $query['wheres']
 			]);
 
 			$response->throw();
@@ -45,11 +51,16 @@ class Connector extends BaseConnection
 	{
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::put($model->getUrl() . $model->getTableName() . '/' . $model->id, 
-				array_merge(
-					[ 'api_token' => $model->getApiToken() ],
-			    	$model->getAttributes()
-			    )
+			$response = Http::withHeaders([
+			    'Accept' => 'application/json',
+			    'Authorization' => 'Bearer ' . $model->getApiToken(),
+			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			])->put(sprintf('%s/%s/%s', 
+				$model->getUrl(), 
+				$model->getTableName(), 
+				$model->id
+			), 
+		    	$model->getAttributes()
 			);
 
 			$response->throw();
@@ -62,14 +73,18 @@ class Connector extends BaseConnection
 	{
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::post($model->getUrl() . $model->getTableName(), 
-				array_merge(
-					[ 'api_token' => $model->getApiToken() ],
-			    	$model->getAttributes()
-			    )
+			$response = Http::withHeaders([
+			    'Accept' => 'application/json',
+			    'Authorization' => 'Bearer ' . $model->getApiToken(), 
+			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			])->post(sprintf('%s/%s', 
+				$model->getUrl(), 
+				$model->getTableName(), 
+			), 
+		    	$model->getAttributes()
 			);
 
-			$response->throw();
+			$response->throw();	
 
 			return $response->json();
 		}
@@ -79,9 +94,15 @@ class Connector extends BaseConnection
 	{
 		if(is_string($model->getUrl()))
 		{			
-			$response = Http::delete($model->getUrl() . $model->getTableName() . '/' . $model->id, [
-			    'api_token' => $model->getApiToken()
-			]);
+			$response = Http::withHeaders([
+			    'Accept' => 'application/json',
+			    'Authorization' => 'Bearer ' . $model->getApiToken(),
+			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
+			])->delete(sprintf('%s/%s/%s', 
+				$model->getUrl(), 
+				$model->getTableName(), 
+				$model->id
+			));
 
 			$response->throw();
 
