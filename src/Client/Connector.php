@@ -32,7 +32,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Authorization' => 'Bearer ' . $model->getApiToken(),
+			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
 			])->get(sprintf('%s/%s', 
 				$model->getUrl(), 
@@ -53,7 +53,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Authorization' => 'Bearer ' . $model->getApiToken(),
+			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
 			])->put(sprintf('%s/%s/%s', 
 				$model->getUrl(), 
@@ -75,7 +75,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Authorization' => 'Bearer ' . $model->getApiToken(), 
+			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
 			])->post(sprintf('%s/%s', 
 				$model->getUrl(), 
@@ -96,7 +96,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Authorization' => 'Bearer ' . $model->getApiToken(),
+			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", config('app.client.user-agent'), config('app.version'))
 			])->delete(sprintf('%s/%s/%s', 
 				$model->getUrl(), 
