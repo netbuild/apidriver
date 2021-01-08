@@ -2,7 +2,7 @@
 
 /**
  *
- * LICENSE: This source file is subject to version 3.01 of the GNU license
+ * LICENSE: This source file is subject to version 3.0 of the GNU license
  * that is available through the world-wide-web at the following URI:
  * https://www.gnu.org/licenses/gpl-3.0.de.html
  *
