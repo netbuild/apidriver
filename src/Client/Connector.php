@@ -69,7 +69,13 @@ class Connector extends BaseConnection
 		    	$model->getAttributes()
 			);
 
-			$response->throw();
+			$response->throw(function ($response, $e) 
+			{
+				if($response->status() == 422 && isset($response->json()['errors'])) 
+				{
+					$e->validation_errors = $response->json()['errors'];
+				}
+			});
 
 			return $response->json();
 		}
@@ -93,9 +99,13 @@ class Connector extends BaseConnection
 		    	$model->getAttributes()
 			);
 
-			$response->throw();	
-
-			return $response->json();
+			$response->throw(function ($response, $e) 
+			{
+				if($response->status() == 422 && isset($response->json()['errors'])) 
+				{
+					$e->validation_errors = $response->json()['errors'];
+				}
+			});
 		}
 	}
 
