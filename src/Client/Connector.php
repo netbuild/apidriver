@@ -32,6 +32,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
+			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
@@ -56,6 +57,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
+			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
@@ -87,6 +89,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
+			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
@@ -115,6 +118,7 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
+			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
