@@ -42,8 +42,8 @@ use Netbuild\Apidriver\Eloquent\Model;
 
 class User extends Model
 {
-	protected $url 			= 'https://api.your_restful.url'
-	protected $api_token		= 'YOUR_API_TOKEN'
+	protected $url 			= 'https://api.your_restful.url';
+	protected $api_token		= 'YOUR_API_TOKEN';
 	protected $table 		= 'REMOTE_MODEL';
 }
 ```
@@ -87,8 +87,8 @@ use Netbuild\Apidriver\Eloquent\Model;
 class User extends Model
 {
     protected $connection   		= 'api';
-    protected $url 			= 'https://api.your_restful.url'
-    protected $api_token		= 'YOUR_API_TOKEN'
+    protected $url 			= 'https://api.your_restful.url';
+    protected $api_token		= 'YOUR_API_TOKEN';
     protected $table 			= 'REMOTE_MODEL';
     public    $timestamps   		= true;
 
@@ -107,8 +107,8 @@ use Netbuild\Apidriver\Eloquent\Model;
 class Database extends Model
 {
     protected $connection   		= 'api';
-    protected $url 			= 'https://api.your_restful.url'
-    protected $api_token		= 'YOUR_API_TOKEN'
+    protected $url 			= 'https://api.your_restful.url';
+    protected $api_token		= 'YOUR_API_TOKEN';
     protected $table 			= 'REMOTE_MODEL';
     public    $timestamps   		= true;
 
