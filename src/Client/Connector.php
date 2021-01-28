@@ -2,7 +2,7 @@
 
 /**
  *
- * LICENSE: This source file is subject to version 3.0 of the GNU license
+ * LICENSE: This source file is subject to version 3.01 of the GNU license
  * that is available through the world-wide-web at the following URI:
  * https://www.gnu.org/licenses/gpl-3.0.de.html
  *
@@ -29,24 +29,26 @@ class Connector extends BaseConnection
 	public function get($connection, $query, $model, $config)
 	{	
 		if(is_string($model->getUrl()))
-		{			
+		{	
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
 			    	config('app.version') ?? '0.0.0'
 			    )
-			])->get(sprintf('%s/%s', 
+			])
+			->get(sprintf('%s/%s', 
 				$model->getUrl(), 
 				$model->getTableName()
 			), [
 			    'wheres' => $query['wheres']
-			]);
-
-			$response->throw();
-
+			])
+			->throw(function ($response, $e) {
+				// Solved: Guzzle's truncated error messages
+				throw new \Exception($e . PHP_EOL . $response->getBody()->getContents());
+			});			
+			
 			return $response->json();
 		}
 	}
@@ -57,7 +59,6 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
@@ -69,15 +70,11 @@ class Connector extends BaseConnection
 				$model->id
 			), 
 		    	$model->getAttributes()
-			);
-
-			$response->throw(function ($response, $e) 
-			{
-				if($response->status() == 422 && isset($response->json()['errors'])) 
-				{
-					$e->validation_errors = $response->json()['errors'];
-				}
-			});
+			)
+			->throw(function ($response, $e) {
+				// Solved: Guzzle's truncated error messages
+				throw new \Exception($e . PHP_EOL . $response->getBody()->getContents());
+			});	
 
 			return $response->json();
 		}
@@ -89,7 +86,6 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
@@ -100,15 +96,13 @@ class Connector extends BaseConnection
 				$model->getTableName(), 
 			), 
 		    	$model->getAttributes()
-			);
-
-			$response->throw(function ($response, $e) 
-			{
-				if($response->status() == 422 && isset($response->json()['errors'])) 
-				{
-					$e->validation_errors = $response->json()['errors'];
-				}
+			)
+			->throw(function ($response, $e) {
+				// Solving: Guzzle errors truncated
+				throw new \Exception($e . PHP_EOL . $response->getBody()->getContents());
 			});
+
+			return $response->json();
 		}
 	}
 
@@ -118,7 +112,6 @@ class Connector extends BaseConnection
 		{			
 			$response = Http::withHeaders([
 			    'Accept' => 'application/json',
-			    'Accept-Language' => app()->currentLocale(),
 			    'Authorization' => sprintf('Bearer %s', $model->getApiToken()),
 			    'User-Agent' => sprintf("%s %s", 
 			    	config('app.client.user-agent') ?? 'Laravel Framework', 
@@ -128,10 +121,12 @@ class Connector extends BaseConnection
 				$model->getUrl(), 
 				$model->getTableName(), 
 				$model->id
-			));
-
-			$response->throw();
-
+			))
+			->throw(function ($response, $e) {
+				// Solving: Guzzle errors truncated
+				throw new \Exception($e . PHP_EOL . $response->getBody()->getContents());
+			});	
+			
 			return $response->json();
 		}
 	}
